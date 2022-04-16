@@ -1,0 +1,107 @@
+﻿<Page x:Class="Desktop_TNS.Views.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:vm="clr-namespace:Desktop_TNS.ViewModels"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Desktop_TNS.Views"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="MainPage" Loaded="Page_Loaded">
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="17"/>
+            <Setter Property="Background" Value="White"/>
+        </Style>
+    </Page.Resources>
+    <Page.DataContext>
+        <vm:MainViewModel/>
+    </Page.DataContext>
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{Binding MenuWidth}"/>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="1.2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="6*" />
+        </Grid.RowDefinitions>
+        <TextBlock FontSize="27" VerticalAlignment="Center" Text="{Binding PageTag}" HorizontalAlignment="Left" Grid.Column="1" Width="259"/>
+        <Ellipse Width="60" Height="60" Name="Img_Profile" Grid.Column="2">
+        </Ellipse>
+        <ComboBox Name="Cmb_Role" HorizontalAlignment="Right" Grid.Column="1" Margin="0,10" Width="197" SelectionChanged="Cmb_Role_SelectionChanged"/>
+        <!--buttons-->
+        <StackPanel Background="LightGray" Grid.RowSpan="2">
+            <Button Tag="Subscribers" Name="Btn_Subs" Click="ChangePageByButton">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="100" IsEnabled="{Binding IsCollapsed}"/>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{DynamicResource Img_Subscribers}" Grid.Column="0"/>
+                    <Label Grid.Column="1" IsEnabled="False">Абоненты</Label>
+                </Grid>
+            </Button>
+            <Button Tag="Hardware" Name="Btn_Hardware" Click="ChangePageByButton">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{DynamicResource Img_Hardware}" Grid.Column="0"/>
+                    <TextBlock FontSize="12" TextWrapping="Wrap" Grid.Column="1">Управление оборудованием</TextBlock>
+                </Grid>
+            </Button>
+            <Button Tag="Actives" Name="Btn_Actives" Click="ChangePageByButton">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{DynamicResource Img_Actives}" Grid.Column="0"/>
+                    <Label VerticalAlignment="Center" Grid.Column="1">Активы</Label>
+                </Grid>
+            </Button>
+            <Button Tag="Billing" Name="Btn_Billing" Click="ChangePageByButton">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{DynamicResource Img_Billing}" Grid.Column="0"/>
+                    <Label Grid.Column="1">Биллинг</Label>
+                </Grid>
+            </Button>
+            <Button Tag="Support" Name="Btn_Support" Click="ChangePageByButton">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{DynamicResource Img_Support}" Grid.Column="0"/>
+                    <Label Grid.Column="1">Поддержка</Label>
+                </Grid>
+            </Button>
+            <Button Tag="CRM" Name="Btn_CRM" Click="ChangePageByButton">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="25" />
+                        <ColumnDefinition Width="100" />
+                    </Grid.ColumnDefinitions>
+                    <Image Source="{DynamicResource Img_CRM}" Grid.Column="0"/>
+                    <Label Grid.Column="1" IsEnabled="False">CRM</Label>
+                </Grid>
+            </Button>
+            <Button Content="Свернуть" FontSize="10" Background="Gray" Command="{Binding CollapseCommand}"/>
+        </StackPanel>
+        <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FunctionalPage}"/>
+        <ListView Background="LightGray" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Background="Gray"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Page>

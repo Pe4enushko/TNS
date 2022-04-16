@@ -1,0 +1,76 @@
+﻿<Window x:Class="Desktop_TNS.Views.CRMNewRequest"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:Desktop_TNS.ViewModels"
+        xmlns:local="clr-namespace:Desktop_TNS.Views"
+        mc:Ignorable="d"
+        Title="CRMNewRequest" Height="455" Width="519">
+    <Window.DataContext>
+        <vm:NewRequestViewModel/>
+    </Window.DataContext>
+    <Grid>
+        <Label Content="Номер заявки" HorizontalAlignment="Left" Margin="29,18,0,0" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding Request_id}" HorizontalAlignment="Left" Height="23" Margin="29,49,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Дата создания" HorizontalAlignment="Left" Margin="29,81,0,0" VerticalAlignment="Top"/>
+        <DatePickerTextBox Text="{Binding Created}" HorizontalAlignment="Left" Height="32" Margin="29,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="ЛС" HorizontalAlignment="Left" Margin="29,149,0,0" VerticalAlignment="Top"/>
+        <TextBlock Text="{Binding Bill}" HorizontalAlignment="Left" Height="23" Margin="29,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Услуга" HorizontalAlignment="Left" Margin="29,212,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="29,243,0,0" Text="TextBox" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem>Интернет</ComboBoxItem>
+            <ComboBoxItem>Мобильная связь</ComboBoxItem>
+            <ComboBoxItem>Телевидение</ComboBoxItem>
+            <ComboBoxItem>Видеонаблюдение</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Вид услуги" HorizontalAlignment="Left" Margin="29,285,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="29,316,0,0" Text="TextBox" VerticalAlignment="Top" Width="263">
+            <ComboBoxItem>Подключение</ComboBoxItem>
+            <ComboBoxItem>Управление договором/контактными данными</ComboBoxItem>
+            <ComboBoxItem>Управление тарифом/услугой</ComboBoxItem>
+            <ComboBoxItem>Диагностика и настройка оборудования/подключения</ComboBoxItem>
+            <ComboBoxItem>Оплата услуг</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Тип услуги" HorizontalAlignment="Left" Margin="172,18,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="172,49,0,0" Text="TextBox" VerticalAlignment="Top" Width="247">
+            <ComboBoxItem>Подключение услуг с новой инфраструктурой</ComboBoxItem>
+            <ComboBoxItem>Подключение услуг на существующей инфраструктуре</ComboBoxItem>
+            <ComboBoxItem>Изменение условий договора</ComboBoxItem>
+            <ComboBoxItem>Включение в договор дополнительной услуги</ComboBoxItem>
+            <ComboBoxItem>Изменение контактных данных</ComboBoxItem>
+            <ComboBoxItem>Изменение тарифа</ComboBoxItem>
+            <ComboBoxItem>Изменение адреса предоставления услуг</ComboBoxItem>
+            <ComboBoxItem>Отключение услуги</ComboBoxItem>
+            <ComboBoxItem>Приостановка предоставления услуги</ComboBoxItem>
+            <ComboBoxItem>Нет доступа к услуге</ComboBoxItem>
+            <ComboBoxItem>Разрыв соединения</ComboBoxItem>
+            <ComboBoxItem>Низкая скорость соединения</ComboBoxItem>
+            <ComboBoxItem>Выписка по платежам</ComboBoxItem>
+            <ComboBoxItem>Информация о платежах</ComboBoxItem>
+            <ComboBoxItem>Получение квитанции на оплату услуги</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Статус" HorizontalAlignment="Left" Margin="172,81,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="Cmb_Status" HorizontalAlignment="Left" Height="23" Margin="172,112,0,0" Text="TextBox" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem>Новая</ComboBoxItem>
+            <ComboBoxItem>Требует выезда</ComboBoxItem>
+            <ComboBoxItem>Закрыта</ComboBoxItem>
+            <ComboBoxItem>Нет доступа к услуге</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Тип оборудования" HorizontalAlignment="Left" Margin="172,149,0,0" VerticalAlignment="Top"/>
+        <ComboBox Name="Cmb_Hardware" ItemsSource="{Binding Hardware}" HorizontalAlignment="Left" Height="23" Margin="172,180,0,0" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Тип проблемы" HorizontalAlignment="Left" Margin="172,212,0,0" VerticalAlignment="Top"/>
+        <ComboBox HorizontalAlignment="Left" Height="23" Margin="172,243,0,0" Text="TextBox" VerticalAlignment="Top" Width="120">
+            <ComboBoxItem>Консультация</ComboBoxItem>
+            <ComboBoxItem>Техническое обслуживание</ComboBoxItem>
+        </ComboBox>
+        <Label Content="Описание проблемы" HorizontalAlignment="Left" Margin="23,349,0,0" VerticalAlignment="Top"/>
+        <TextBox Text="{Binding Problem}" HorizontalAlignment="Left" Height="23" Margin="23,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="450"/>
+        <Label Content="Дата закрытия" HorizontalAlignment="Left" Margin="341,81,0,0" VerticalAlignment="Top"/>
+        <DatePickerTextBox Text="{Binding Closed}" HorizontalAlignment="Left" Height="32" Margin="341,112,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button Name="btn_Check" Content="Проверить" HorizontalAlignment="Left" Margin="370,180,0,0" VerticalAlignment="Top" Width="103" Click="btn_Check_Click"/>
+        <ProgressBar Name="ProgBar" HorizontalAlignment="Left" Height="10" Margin="370,205,0,0" VerticalAlignment="Top" Width="100"/>
+        <Button IsEnabled="False" Name="btn_Send" Content="Отправить" HorizontalAlignment="Left" Margin="370,251,0,0" VerticalAlignment="Top" Width="103"/>
+
+    </Grid>
+</Window>
