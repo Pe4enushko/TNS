@@ -1,0 +1,30 @@
+﻿<Window x:Class="Desktop_TNS.Views.AddHardware.AddWebHardwareWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Desktop_TNS.Views.AddHardware"
+        mc:Ignorable="d"
+        Title="AddWebHardwareWindow" Height="551.567" Width="370.165">
+    <Grid Margin="0,0,2,0">
+        <TextBox x:Name="Txt_Title" HorizontalAlignment="Left" Height="23" Margin="10,104,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Название" HorizontalAlignment="Left" Margin="10,73,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Ports" HorizontalAlignment="Left" Height="23" Margin="10,163,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Кол-во портов" HorizontalAlignment="Left" Margin="10,132,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_TransferStandard" HorizontalAlignment="Left" Height="23" Margin="10,222,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Стандарт передачи данных" HorizontalAlignment="Left" Margin="10,191,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Frequency" PreviewKeyDown="TextBox_PreviewKeyDown" HorizontalAlignment="Left" Height="23" Margin="10,285,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Частота" HorizontalAlignment="Left" Margin="10,254,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Speed" HorizontalAlignment="Left" Height="23" Margin="10,344,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Скорость передачи данных" HorizontalAlignment="Left" Margin="10,313,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Address" HorizontalAlignment="Left" Height="23" Margin="10,403,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Место расположения" HorizontalAlignment="Left" Margin="10,372,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Interfaces" HorizontalAlignment="Left" Height="23" Margin="10,462,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Интерфейсы" HorizontalAlignment="Left" Margin="10,431,0,0" VerticalAlignment="Top"/>
+        <Button Click="Btn_Ok_Click" x:Name="Btn_Ok" Content="ОК" HorizontalAlignment="Left" Margin="245,41,-8,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Btn_Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="245,103,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="Txt_Series" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Серийный номер" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

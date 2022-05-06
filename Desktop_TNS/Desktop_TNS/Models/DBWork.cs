@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.SqlClient;
+using System.Reflection;
+using System.Windows;
 
 namespace Desktop_TNS.Models
 {
-    static class DBWork
+    public static class DBWork
     {
         static SqlConnection Connection = new SqlConnection(Properties.Settings.Default.YesConnectionString);
         /// <summary>
@@ -119,6 +122,86 @@ namespace Desktop_TNS.Models
             }
             return GetData($"SELECT * FROM [Subscribers] WHERE [number] = {number} AND [fullname] = '{name}'").Rows.Count > 0;
         }
+        /// <summary>
+        /// If status is not closed, then set <paramref name="closed"/> = DateTime.MinValue
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="created"></param>
+        /// <param name="bill"></param>
+        /// <param name="service"></param>
+        /// <param name="serviceKind"></param>
+        /// <param name="serviceType"></param>
+        /// <param name="status"></param>
+        /// <param name="hardware"></param>
+        /// <param name="problem"></param>
+        /// <param name="problemType"></param>
+        /// <param name="closed"></param>
+        public static void InsertCRMRequest(
+            string id, DateTime created, DateTime closed, string bill,
+            string service="", string serviceKind="", string serviceType="",
+            string status="", string hardware="", string problem="", string problemType="")
+        {
+            
+            string c = "\',\'";
+            string values = "'" + id + c + created.ToString("yyyy-MM-dd") + c + bill + c + service + c + serviceKind + c +
+                serviceType + c + status + c + hardware + c + problem + "'," + (closed == DateTime.MinValue ? "NULL" : "'" + closed.ToString("yyyy-MM-dd") + "'")
+                + ",'" + problemType + "'";
+            values = values.Replace("System.Windows.Controls.ComboBoxItem: ", "");
+            if (SendData("INSERT INTO [Requests] VALUES (" +
+                $"{values})"))
+                MessageBox.Show("Заявка успешно отправлена");
+            else
+                MessageBox.Show("Ошибка");
+        }
+        /// <summary>
+        /// Принимает числа: <br/> 0 (Сетевое оборудование) <br/> 1 (Абонентское оборудование) <br/> 2 (Магистральное оборудование)
+        /// </summary>
+        /// <param name="tableNumber"></param>
+        /// <returns></returns>
+        public static DataTable GetHardwareInfo(int tableNumber)
+        {
+            switch (tableNumber)
+            {
+                case 0: return GetData("SELECT * FROM [Web_hardware]");
+                case 1: return GetData("SELECT * FROM [Subs_hardware]");
+                case 2: return GetData("SELECT * FROM [Highway_hardware]");
+                default: return null;
+            }
+        }
+        public static bool AddHighWayHardware(string series, string title,double frequency,string fadeCoef,string transferTech, string address)
+        {
+            series = "'" + series + "',";
+            title = "'" + title + "',";
+            fadeCoef = ",'" + fadeCoef + "',";
+            transferTech = "'" + transferTech + "',";
+            address= "'" + address+ "'";
+            return SendData("INSERT INTO [Highway_hardware]([series],[title],[frequency],[fade_coefficent],[transmit_technology],[address]) VALUES (" +
+                series + title + frequency.ToString().Replace(",",".") + fadeCoef + transferTech + address + ")");
+        }
+        public static bool AddSubHardware(string series, string title, string ports, string transmit, string speed, string address)
+        {
+            series = "'" + series + "',";
+            title = "'" + title + "',";
+            ports = "'" + ports + "',";
+            transmit= "'" + transmit + "',";
+            speed = "'" + speed + "',";
+            address = "'" + address + "'";
+            return SendData("INSERT INTO [Subs_hardware]([series],[title],[ports],[transmit_standard],[speed],[address]) VALUES (" +
+                series + title + ports + transmit + speed + address + ")");
+        }
+        public static bool AddWebHardware(string series, string title, string ports_count,
+            string transmit, double frequency, string interfaces, string speed, string address)
+        {
+            series = "'" + series + "',";
+            title = "'" + title + "',";
+            ports_count = "'" + ports_count + "',";
+            transmit = "'" + transmit + "',";
+            interfaces = ",'" + interfaces + "',";
+            speed = "'" + speed + "',";
+            address = "'" + address + "'";
+            return SendData("INSERT INTO [Web_hardware]([series],[title],[ports_count],[transmit_standard],[frequency],[interfaces],[speed],[address]) VALUES (" +
+                series + title + ports_count + transmit + frequency.ToString().Replace(",", ".") + interfaces + speed + address + ")");
+        }
 
         #region BasicQueries
         //Queries
@@ -143,13 +226,23 @@ namespace Desktop_TNS.Models
         /// Use Insert command
         /// </summary>
         /// <param name="command"></param>
-        static void SendData(string command)
+        static bool SendData(string command)
         {
-            SqlCommand cmd = Connection.CreateCommand();
-            cmd.CommandText = command;
-            if (Connection.State == ConnectionState.Closed) Connection.Open();
-            cmd.ExecuteNonQuery();
-            if (Connection.State == ConnectionState.Open) Connection.Close();
+            try
+            {
+                SqlCommand cmd = Connection.CreateCommand();
+                cmd.CommandText = command;
+                if (Connection.State == ConnectionState.Closed) Connection.Open();
+                int rwf = cmd.ExecuteNonQuery();
+                if (Connection.State == ConnectionState.Open) Connection.Close();
+                
+                return rwf > 0;
+            }
+            catch (Exception exc)
+            {
+                MessageBox.Show(exc.Message);
+                return false;
+            }
         }
         /// <summary>
         /// Checks if requested data exists

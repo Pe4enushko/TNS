@@ -95,8 +95,8 @@
             </Button>
             <Button Content="Свернуть" FontSize="10" Background="Gray" Command="{Binding CollapseCommand}"/>
         </StackPanel>
-        <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FunctionalPage}"/>
-        <ListView Background="LightGray" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding}">
+        <Frame Grid.Row="1" Grid.Column="1" Content="{Binding FunctionalPage}" Margin="0,0,0,10"/>
+        <ListView Background="LightGray" Grid.Column="2" Grid.Row="1" ItemsSource="{Binding Events}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextBlock Background="Gray"/>

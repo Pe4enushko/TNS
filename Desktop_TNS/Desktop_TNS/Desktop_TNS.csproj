@@ -76,6 +76,15 @@
     <Compile Include="Views\ActivesPage.xaml.cs">
       <DependentUpon>ActivesPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\AddHardware\AddHighwayHardwareWindow.xaml.cs">
+      <DependentUpon>AddHighwayHardwareWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddHardware\AddSubsHardwareWindow.xaml.cs">
+      <DependentUpon>AddSubsHardwareWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AddHardware\AddWebHardwareWindow.xaml.cs">
+      <DependentUpon>AddWebHardwareWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BillingPage.xaml.cs">
       <DependentUpon>BillingPage.xaml</DependentUpon>
     </Compile>
@@ -121,6 +130,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\ActivesPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddHardware\AddHighwayHardwareWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddHardware\AddSubsHardwareWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AddHardware\AddWebHardwareWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

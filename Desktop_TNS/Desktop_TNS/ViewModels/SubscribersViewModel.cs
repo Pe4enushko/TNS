@@ -23,7 +23,7 @@ namespace Desktop_TNS.ViewModels
 
         public bool Active { get => active; set { active = value; OnPropertyChanged(); ChangeSubscribersCommand.Execute(this); } }
         public bool Unactive { get => unactive; set { unactive = value; OnPropertyChanged(); ChangeSubscribersCommand.Execute(this); } }
-        public string CurrentSubscriberId { get => ShownData?.Rows[SelectedInd > 0 ? SelectedInd : 0]?.ItemArray[0].ToString() ?? null;}
+        public string CurrentSubscriberId { get => ShownData?.Rows[SelectedInd > 0 && SelectedInd < ShownData.Rows.Count ? SelectedInd : 0]?.ItemArray[0]?.ToString() ?? string.Empty;}
         public string CurrentSubInfo { get => currentSubInfo; set { currentSubInfo = value; OnPropertyChanged(); } }
 
         public int SelectedInd { get => _selectedInd; set { _selectedInd = value; OnPropertyChanged(); } }
@@ -35,7 +35,7 @@ namespace Desktop_TNS.ViewModels
             ChooseSubscriber = new Command(() => 
             {
                 CurrentSub = DBWork.GetOneSubscriberData(CurrentSubscriberId,Unactive);
-                CurrentSubInfo = GetInfo();
+                CurrentSubInfo = GetInfo() ?? string.Empty;
             });
             ChangeSubscribersCommand = new Command(() =>
             {
@@ -59,7 +59,7 @@ namespace Desktop_TNS.ViewModels
                     else
                     {
                         ShownData.Clear();
-                        CurrentSub.Clear();
+                        CurrentSubInfo = null;
                     }
                 }
             });

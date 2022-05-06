@@ -1,0 +1,26 @@
+﻿<Window x:Class="Desktop_TNS.Views.AddHardware.AddHighwayHardwareWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Desktop_TNS.Views.AddHardware"
+        mc:Ignorable="d"
+        Title="AddHighwayHardwareWindow" Height="417.526" Width="385.567">
+    <Grid>
+        <TextBox x:Name="Txt_Title" HorizontalAlignment="Left" Height="23" Margin="10,97,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Название" HorizontalAlignment="Left" Margin="10,66,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Transfer" HorizontalAlignment="Left" Height="23" Margin="10,156,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Технология передачи данных" HorizontalAlignment="Left" Margin="10,125,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Frequency" PreviewKeyDown="TextBox_PreviewKeyDown" HorizontalAlignment="Left" Height="23" Margin="10,219,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Частота" HorizontalAlignment="Left" Margin="10,188,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_FadeKoef" HorizontalAlignment="Left" Height="23" Margin="10,278,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Коэффицент затухания" HorizontalAlignment="Left" Margin="10,247,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Txt_Address" HorizontalAlignment="Left" Height="23" Margin="10,337,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Расположение" HorizontalAlignment="Left" Margin="10,306,0,0" VerticalAlignment="Top"/>
+        <Button Click="Btn_Ok_Click" x:Name="Btn_Ok" Content="ОК" HorizontalAlignment="Left" Margin="245,41,0,0" VerticalAlignment="Top" Width="75"/>
+        <Button x:Name="Btn_Cancel" Content="Отмена" HorizontalAlignment="Left" Margin="245,103,0,0" VerticalAlignment="Top" Width="75"/>
+        <TextBox x:Name="Txt_Series" HorizontalAlignment="Left" Height="23" Margin="10,41,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="194"/>
+        <Label Content="Серийный номер" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top"/>
+
+    </Grid>
+</Window>

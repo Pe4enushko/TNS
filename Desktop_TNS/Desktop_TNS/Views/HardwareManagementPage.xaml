@@ -3,12 +3,30 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:vm="clr-namespace:Desktop_TNS.ViewModels"
       xmlns:local="clr-namespace:Desktop_TNS.Views"
       mc:Ignorable="d" Tag="Оборудование"
-      d:DesignHeight="450" d:DesignWidth="800"
-      Title="HardwareManagementPage">
-
-    <Grid>
-        
+      d:DesignHeight="450" d:DesignWidth="800">
+    <Page.DataContext>
+        <vm:HardwareManagementViewModel/>
+    </Page.DataContext>
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="94*"/>
+            <RowDefinition Height="131*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <DataGrid IsReadOnly="True" Name="Dg_hardware" ItemsSource="{Binding ShownData}" SelectedIndex="{Binding SelectedRow}"
+ MouseDoubleClick="Dg_hardware_MouseDoubleClick" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" Grid.Column="0" Margin="10,0,0,0"/>
+        <ComboBox SelectedIndex="{Binding SelectedTable}" HorizontalAlignment="Left" Margin="10,0,0,15" VerticalAlignment="Bottom" Width="154" Height="22" Grid.Row="0" Grid.Column="0">
+            <ComboBoxItem Content="Сети"/>
+            <ComboBoxItem Content="Абонентское"/>
+            <ComboBoxItem Content="Магистральное"/>
+        </ComboBox>
+        <Label Content="Выберите оборудование" HorizontalAlignment="Left" Margin="10,0,0,42" VerticalAlignment="Bottom" Width="154" Height="26" Grid.Row="0" Grid.Column="0"/>
+        <Button Content="Проверить" Name="btn_check" HorizontalAlignment="Left" Margin="236,0,0,13" VerticalAlignment="Bottom" Width="75" Grid.Row="0" Grid.Column="0" Command="{Binding CheckCommand}" Height="20"/>
+        <CheckBox Content="Всё оборудование сразу" IsChecked="{Binding AllToCheck}" HorizontalAlignment="Left" Margin="316,0,0,15" VerticalAlignment="Bottom" Grid.Row="0" Grid.Column="0" Height="15" Width="155"/>
     </Grid>
 </Page>

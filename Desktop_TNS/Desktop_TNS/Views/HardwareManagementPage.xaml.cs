@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Desktop_TNS.Models;
+using Desktop_TNS.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,12 @@ namespace Desktop_TNS.Views
         public HardwareManagementPage()
         {
             InitializeComponent();
+        }
+
+        private void Dg_hardware_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var dc = this.DataContext as HardwareManagementViewModel;
+            dc.CheckCommand.Execute(this);
         }
     }
 }
